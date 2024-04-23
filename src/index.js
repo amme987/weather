@@ -3,11 +3,13 @@ import './style.css';
 const location = document.querySelector('.location');
 const temperature = document.querySelector('.temperature');
 const condition = document.querySelector('.condition');
-const tempLow = document.querySelector('.temp-low');
 const tempHigh = document.querySelector('.temp-high');
+const tempLow = document.querySelector('.temp-low');
 
 const form = document.querySelector('form');
 const input = document.getElementById('input');
+
+const img = document.querySelector('img');
 
 getWeather();
 
@@ -28,11 +30,13 @@ function getWeather(weather = 31047) {
       return response.json();
     })
     .then(function (response) {
-      // console.log(response.forecast);
+      console.log(response);
+      console.log(response.current.condition.icon);
+      img.src = '//cdn.weatherapi.com/weather/64x64/day/113.png';
       location.textContent = `${response.location.name}, ${response.location.region}`;
-      temperature.textContent = response.current.temp_f;
+      temperature.textContent = `${response.current.temp_f}°F`;
       condition.textContent = response.current.condition.text;
-      tempLow.textContent = response.forecast.forecastday[0].day.mintemp_f;
-      tempHigh.textContent = response.forecast.forecastday[0].day.maxtemp_f;
+      tempHigh.textContent = `High: ${response.forecast.forecastday[0].day.maxtemp_f}°F`;
+      tempLow.textContent = `Low: ${response.forecast.forecastday[0].day.mintemp_f}°F`;
     });
 }
