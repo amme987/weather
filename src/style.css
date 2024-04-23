@@ -1,1 +1,35 @@
+/* html {
+  box-sizing: border-box;
+} */
 
+html,
+input {
+  font-family: 'Merriweather Sans';
+}
+
+form {
+  display: flex;
+}
+
+input:focus-visible {
+  outline: none;
+}
+
+input {
+  appearance: none;
+  border: none;
+}
+
+input[type='q'] {
+  border-bottom: 1px solid black;
+}
+
+input[type='image'] {
+  height: 1rlh;
+}
+
+input:-webkit-autofill {
+  /* -webkit-text-fill-color: red !important; */
+  -webkit-box-shadow: 0 0 0 30px white inset;
+  /* font-family: 'Merriweather Sans' !important; */
+}

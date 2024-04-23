@@ -7,15 +7,14 @@ const tempLow = document.querySelector('.temp-low');
 const tempHigh = document.querySelector('.temp-high');
 
 const form = document.querySelector('form');
-const input = document.querySelector('input');
-const button = document.querySelector('button');
+const input = document.getElementById('input');
 
 getWeather();
 
 form.addEventListener('submit', e => {
   e.preventDefault();
   let q = input.value;
-  console.log(q);
+  input.value = '';
   getWeather(q);
 });
 
