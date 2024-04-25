@@ -29,7 +29,30 @@ input[type='image'] {
 }
 
 input:-webkit-autofill {
-  /* -webkit-text-fill-color: red !important; */
   -webkit-box-shadow: 0 0 0 30px white inset;
-  /* font-family: 'Merriweather Sans' !important; */
+}
+
+.current {
+  display: grid;
+  width: fit-content;
+  place-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, auto);
+}
+
+.date {
+  grid-column: 1 / span 2;
+}
+
+.temperature {
+  grid-row: 2 / span 2;
+  font-size: 2.5rem;
+}
+
+.condition {
+  font-weight: bold;
+}
+
+.hourly {
+  display: flex;
 }
