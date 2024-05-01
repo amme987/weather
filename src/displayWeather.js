@@ -1,11 +1,12 @@
 import { getWeather } from './index';
+import { displayHourlyWeather } from './hourlyWeather';
 
 const location = document.querySelector('.location');
-const temperature = document.querySelector('.temperature');
+const temperature = document.querySelector('.temp');
 const img = document.querySelector('img');
 const condition = document.querySelector('.condition');
-const tempHigh = document.querySelector('.temp-high');
-const tempLow = document.querySelector('.temp-low');
+const tempHigh = document.querySelector('.high');
+const tempLow = document.querySelector('.low');
 const form = document.querySelector('form');
 const input = document.getElementById('input');
 
@@ -14,6 +15,7 @@ form.addEventListener('submit', e => {
   let q = input.value;
   input.value = '';
   displayWeather(q);
+  displayHourlyWeather(q);
 });
 
 export async function displayWeather(weather) {
