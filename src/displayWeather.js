@@ -1,5 +1,6 @@
 import { getWeather } from './index';
 import { displayHourlyWeather } from './hourlyWeather';
+import { getTemp, convertTemp } from './units'; //Change later
 
 const location = document.querySelector('.location');
 const temperature = document.querySelector('.temp');
@@ -15,27 +16,26 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   let q = input.value;
   input.value = '';
-  updateUI(q);
-  // getWeather(q).then(response => {
-  //   // console.log(response);
-  //   displayWeather(response);
-  //   displayHourlyWeather(response);
-  // });
+  updateWeather(q);
 });
 
 export async function displayWeather(response) {
   location.textContent = `${response.location.name}, ${response.location.region}`;
-  tempNumber.textContent = `${response.current.temp_f}°`;
+  tempNumber.textContent = `${
+    response.current[`temp_${getTemp()}`]
+  }°${getTemp()}`;
   img.src = response.current.condition.icon;
   condition.textContent = response.current.condition.text;
-  tempHigh.textContent = `High: ${response.forecast.forecastday[0].day.maxtemp_f}°F`;
-  tempLow.textContent = `Low: ${response.forecast.forecastday[0].day.mintemp_f}°F`;
+  tempHigh.textContent = `High: ${
+    response.forecast.forecastday[0].day[`maxtemp_${getTemp()}`]
+  }°${getTemp()}`;
+  tempLow.textContent = `Low: ${
+    response.forecast.forecastday[0].day[`mintemp_${getTemp()}`]
+  }°${getTemp()}`;
 }
 
-export async function updateUI(q) {
+export async function updateWeather(q) {
   const response = await getWeather(q);
   displayWeather(response);
   displayHourlyWeather(response);
 }
-
-// TODO: Allow user to toggle between fahrenheit and celsius

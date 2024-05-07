@@ -1,5 +1,6 @@
-import { displayWeather, updateUI } from './displayWeather';
-import { displayHourlyWeather } from './hourlyWeather';
+import { updateWeather } from './displayWeather';
+import { unitEvent } from './units';
+import './units'; // Change later
 import './style.css';
 
 // Default parameter is zip code 31047
@@ -17,34 +18,5 @@ export async function getWeather(location = 31047) {
   return await response.json();
 }
 
-// async function getTemp(response) {
-//   // await getWeather();
-//   await displayHourlyWeather(response);
-//   const temperature = document.getElementsByClassName('temp');
-//   let tempArray = [];
-//   [...temperature].forEach(temp =>
-//     tempArray.push(Number(temp.textContent.slice(-6, -2)))
-//   );
-//   return tempArray;
-// }
-
-// async function convertTemp() {
-//   const temperature = await getTemp();
-//   console.log(temperature);
-// }
-
-updateUI();
-
-const units = document.getElementsByClassName('unit');
-
-console.log(units);
-[...units].forEach(unit =>
-  unit.addEventListener('click', function () {
-    setUnit.bind(unit)();
-  })
-);
-
-function setUnit() {
-  [...units].forEach(unit => unit.classList.remove('current'));
-  this.classList.add('current');
-}
+updateWeather();
+unitEvent();
