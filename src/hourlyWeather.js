@@ -1,8 +1,4 @@
-import { getWeather } from './index';
-
-async function getHourIndex() {
-  // console.log(getWeather());
-  const response = await getWeather();
+async function getHourIndex(response) {
   const currentTime = response.current.last_updated_epoch;
 
   // An array the hourly weather for 48 hours
@@ -17,9 +13,9 @@ async function getHourIndex() {
   return timeEpoch.findIndex(index => index > currentTime);
 }
 
-async function getHourlyWeather(weather) {
-  const response = await getWeather(weather);
-  const index = await getHourIndex();
+async function getHourlyWeather(response) {
+  // const response = await getWeather(location);
+  const index = await getHourIndex(response);
   const hours = response.forecast.forecastday[0].hour.concat(
     response.forecast.forecastday[1].hour
   );
@@ -27,8 +23,8 @@ async function getHourlyWeather(weather) {
   return hours.slice(index, index + 5);
 }
 
-export async function displayHourlyWeather(weather) {
-  const nextHours = await getHourlyWeather(weather);
+export async function displayHourlyWeather(response) {
+  const nextHours = await getHourlyWeather(response);
   const hourly = document.querySelector('.hourly');
   hourly.textContent = '';
 
@@ -41,7 +37,7 @@ export async function displayHourlyWeather(weather) {
     const conditionIcon = document.createElement('img');
     conditionIcon.src = obj.condition.icon;
     const temperature = document.createElement('div');
-    temperature.setAttribute('class', 'temp');
+    temperature.classList.add('temp');
     temperature.textContent = `${obj.temp_f}°F`;
 
     article.append(hour, conditionIcon, temperature);
