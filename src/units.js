@@ -4,7 +4,7 @@ const units = document.getElementsByClassName('unit');
 
 export function unitEvent() {
   [...units].forEach(unit =>
-    unit.addEventListener('click', function () {
+    unit.addEventListener('click', () => {
       setUnit.bind(unit)();
       updateWeather();
     })

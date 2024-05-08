@@ -16,7 +16,6 @@ async function getHourIndex(response) {
 }
 
 async function getHourlyWeather(response) {
-  // const response = await getWeather(location);
   const index = await getHourIndex(response);
   const hours = response.forecast.forecastday[0].hour.concat(
     response.forecast.forecastday[1].hour
@@ -26,6 +25,7 @@ async function getHourlyWeather(response) {
 }
 
 export async function displayHourlyWeather(response) {
+  console.log(response);
   const nextHours = await getHourlyWeather(response);
   const hourly = document.querySelector('.hourly');
   hourly.textContent = '';
