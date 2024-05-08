@@ -25,7 +25,6 @@ async function getHourlyWeather(response) {
 }
 
 export async function displayHourlyWeather(response) {
-  console.log(response);
   const nextHours = await getHourlyWeather(response);
   const hourly = document.querySelector('.hourly');
   hourly.textContent = '';

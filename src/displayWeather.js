@@ -33,7 +33,7 @@ export async function displayWeather(response) {
   }°${getTemp()}`;
 }
 
-export async function updateWeather(q) {
+export async function updateWeather() {
   const response = await getWeather();
   displayWeather(response);
   displayHourlyWeather(response);

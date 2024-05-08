@@ -3,6 +3,13 @@ import { unitEvent } from './units';
 import './style.css';
 
 export const inputLocation = { location: 31047 };
+
+// Get user's current location coordinates and put it in inputLocation object. If user denies request, run updateWeather() with default location
+navigator.geolocation.getCurrentPosition(geo => {
+  inputLocation.location = `${geo.coords.latitude},${geo.coords.longitude}`;
+  updateWeather();
+}, updateWeather);
+
 // Default parameter is zip code 31047
 /**
  * Gets the current weather for the given location.
@@ -18,5 +25,4 @@ export async function getWeather() {
   return await response.json();
 }
 
-updateWeather();
 unitEvent();
