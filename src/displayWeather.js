@@ -22,15 +22,15 @@ export async function displayWeather(response) {
   location.textContent = `${response.location.name}, ${response.location.region}`;
   tempNumber.textContent = `${
     response.current[`temp_${getTemp()}`]
-  }°${getTemp()}`;
+  }°${getTemp().toUpperCase()}`;
   img.src = response.current.condition.icon;
   condition.textContent = response.current.condition.text;
   tempHigh.textContent = `High: ${
     response.forecast.forecastday[0].day[`maxtemp_${getTemp()}`]
-  }°${getTemp()}`;
+  }°${getTemp().toUpperCase()}`;
   tempLow.textContent = `Low: ${
     response.forecast.forecastday[0].day[`mintemp_${getTemp()}`]
-  }°${getTemp()}`;
+  }°${getTemp().toUpperCase()}`;
 }
 
 export async function updateWeather() {

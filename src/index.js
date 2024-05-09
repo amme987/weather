@@ -1,6 +1,6 @@
+import './style.css';
 import { updateWeather } from './displayWeather';
 import { unitEvent } from './units';
-import './style.css';
 
 export const inputLocation = { location: 31047 };
 
@@ -10,7 +10,6 @@ navigator.geolocation.getCurrentPosition(geo => {
   updateWeather();
 }, updateWeather);
 
-// Default parameter is zip code 31047
 /**
  * Gets the current weather for the given location.
  * @param {string | number} location The location to find the weather,

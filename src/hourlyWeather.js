@@ -39,7 +39,9 @@ export async function displayHourlyWeather(response) {
     conditionIcon.src = obj.condition.icon;
     const temperature = document.createElement('div');
     temperature.classList.add('temp');
-    temperature.textContent = `${obj[`temp_${getTemp()}`]}°${getTemp()}`;
+    temperature.textContent = `${
+      obj[`temp_${getTemp()}`]
+    }°${getTemp().toUpperCase()}`;
 
     article.append(hour, conditionIcon, temperature);
   }
