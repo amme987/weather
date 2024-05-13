@@ -18,7 +18,7 @@ navigator.geolocation.getCurrentPosition(geo => {
  */
 export async function getWeather() {
   const response = await fetch(
-    `http://api.weatherapi.com/v1/forecast.json?key=3257338dfbd248ea8ca212610241004&q=${inputLocation.location}&days=2`,
+    `https://api.weatherapi.com/v1/forecast.json?key=3257338dfbd248ea8ca212610241004&q=${inputLocation.location}&days=2`,
     { mode: 'cors' }
   );
   return await response.json();
